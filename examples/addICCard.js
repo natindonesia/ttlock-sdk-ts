@@ -25,7 +25,7 @@ async function doStuff() {
         console.log("Ready to scan an IC Card");
         console.log();
       });
-      const result = await lock.addICCard('202001010000', '202212312359');
+      const result = await lock.addICCard('202001010000', '222212312359');
       console.log(result);
       await lock.disconnect();
 

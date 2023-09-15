@@ -103,7 +103,7 @@ export class ManageKeyboardPasswordCommand extends Command {
   private buildAdd(): Buffer {
     if (typeof this.type != "undefined" && typeof this.passCode != "undefined" && this.startDate && this.endDate) {
       let data: Buffer;
-      if (this.type == KeyboardPwdType.PWD_TYPE_PERMANENT) {
+      if (this.type != KeyboardPwdType.PWD_TYPE_PERMANENT) {
         data = Buffer.alloc(1 + 1 + 1 + this.passCode.length + 5 + 5);
       } else {
         data = Buffer.alloc(1 + 1 + 1 + this.passCode.length + 5);

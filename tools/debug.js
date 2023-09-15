@@ -55,9 +55,9 @@ async function doStuff() {
 // doStuff();
 
 let defaultAes = Buffer.from("987623E8A923A1BB3D9E7D0378124588", "hex");
-let aes = Buffer.from("e817e962c7176c296403f646129f362c", "hex");
+let aes = Buffer.from("d8591f1beb3ebe1f5fd275284f0fef7d", "hex");
 // let sent = Buffer.from("7f5a0503010001000190aa108419ca5d7ddc8fa963e1118cacf6f26b27", "hex");
-let received = Buffer.from("7f5a0503020001000154aa1095a3bd4703fde2b76397587b6ee44b7b28", "hex");
+let received = Buffer.from("7f5a0503010001000156aa1036766eb552975b368ffd38e631c96d7c410d0a", "hex");
 let receivedCommand = CommandEnvelope.createFromRawData(received, aes);
 // receivedCommand.buildCommandBuffer();
 let cmd = receivedCommand.getCommand();
