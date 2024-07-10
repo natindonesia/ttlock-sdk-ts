@@ -46,7 +46,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
       this.device.on("disconnected", this.onDeviceDisconnected.bind(this));
     }
 
-    if (typeof this.device != "undefined") {
+    if (typeof this.device !== "undefined") {
       this.id = this.device.id;
       this.name = this.device.name;
       this.rssi = this.device.rssi;
@@ -194,7 +194,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
               if (!written) {
                 this.waitingForResponse = false;
                 // make sure we clear response buffer as a response could still have been
-                // received between writing packets (before lock disconnects, on unstable network) 
+                // received between writing packets (before lock disconnects, on unstable network)
                 this.responses = [];
                 throw new Error("Unable to send data to lock");
               }
@@ -240,7 +240,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
   }
 
   /**
-   * 
+   *
    * @param timeout Timeout to wait in ms
    */
   async waitForResponse(timeout: number = 10000): Promise<CommandEnvelope | undefined> {

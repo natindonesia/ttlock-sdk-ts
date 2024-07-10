@@ -6,9 +6,10 @@ import { TTBluetoothDevice } from "./device/TTBluetoothDevice";
 import { TTLock } from "./device/TTLock";
 
 import { BluetoothLeService, TTLockUUIDs, ScannerType } from "./scanner/BluetoothLeService";
-import { ScannerOptions } from "./scanner/ScannerInterface";
+import { ScannerInterface, ScannerOptions } from "./scanner/ScannerInterface";
 import { TTLockData } from "./store/TTLockData";
 import { sleep } from "./util/timingUtil";
+import { NodeBleScanner } from "./scanner/ble/NodeBleScanner";
 
 export interface Settings {
   uuids?: string[];
@@ -30,17 +31,16 @@ export interface TTLockClient {
 export class TTLockClient extends events.EventEmitter implements TTLockClient {
   bleService: BluetoothLeService | null = null;
   uuids: string[];
-  scannerType: ScannerType = "noble";
   scannerOptions: ScannerOptions;
   lockData: Map<string, TTLockData>;
   private adapterReady: boolean;
   private lockDevices: Map<string, TTLock> = new Map();
   private scanning: boolean = false;
   private monitoring: boolean = false;
+  private scanner?: ScannerInterface;
 
   constructor(options: Settings) {
     super();
-
     this.adapterReady = false;
 
     if (options.uuids) {
@@ -49,11 +49,8 @@ export class TTLockClient extends events.EventEmitter implements TTLockClient {
       this.uuids = TTLockUUIDs;
     }
 
-    if (typeof options.scannerType != "undefined") {
-      this.scannerType = options.scannerType;
-    }
 
-    if (typeof options.scannerOptions != "undefined") {
+    if (typeof options.scannerOptions !== "undefined") {
       this.scannerOptions = options.scannerOptions;
     } else {
       this.scannerOptions = {};
@@ -67,7 +64,7 @@ export class TTLockClient extends events.EventEmitter implements TTLockClient {
 
   async prepareBTService(): Promise<boolean> {
     if (this.bleService == null) {
-      this.bleService = new BluetoothLeService(this.uuids, this.scannerType, this.scannerOptions);
+      this.bleService = new BluetoothLeService(this.uuids, this.scannerOptions, this.scanner);
       this.bleService.on("ready", () => { this.adapterReady = true; this.emit("ready") });
       this.bleService.on("scanStart", this.onScanStart.bind(this));
       this.bleService.on("scanStop", this.onScanStop.bind(this));
