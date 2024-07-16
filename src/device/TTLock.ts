@@ -578,7 +578,7 @@ export class TTLock extends TTLockApi implements TTLock {
       throw new Error("Lock is in pairing mode");
     }
 
-    let data: PassageModeData[] = [];
+    const data: PassageModeData[] = [];
 
     try {
       if (await this.macro_adminLogin()) {
@@ -824,7 +824,7 @@ export class TTLock extends TTLockApi implements TTLock {
       throw new Error("Lock is not connected");
     }
 
-    let data: KeyboardPassCode[] = [];
+    const data: KeyboardPassCode[] = [];
 
     try {
       if (await this.macro_adminLogin()) {
@@ -1005,7 +1005,7 @@ export class TTLock extends TTLockApi implements TTLock {
       throw new Error("Lock is not connected");
     }
 
-    let data: ICCard[] = [];
+    const data: ICCard[] = [];
 
     try {
       if (await this.macro_adminLogin()) {
@@ -1180,7 +1180,7 @@ export class TTLock extends TTLockApi implements TTLock {
       throw new Error("Lock is not connected");
     }
 
-    let data: Fingerprint[] = [];
+    const data: Fingerprint[] = [];
 
     try {
       if (await this.macro_adminLogin()) {
@@ -1204,7 +1204,7 @@ export class TTLock extends TTLockApi implements TTLock {
 
   /**
    * No ideea what this does ...
-   * @param type 
+   * @param type
    */
   async setRemoteUnlock(type?: ConfigRemoteUnlock.OP_CLOSE | ConfigRemoteUnlock.OP_OPEN): Promise<ConfigRemoteUnlock.OP_CLOSE | ConfigRemoteUnlock.OP_OPEN | undefined> {
     if (!this.initialized) {
@@ -1249,7 +1249,7 @@ export class TTLock extends TTLockApi implements TTLock {
       throw new Error("Lock is not connected");
     }
 
-    let newOperations: LogEntry[] = [];
+    const newOperations: LogEntry[] = [];
 
     // in all mode do the following
     // - get new operations
@@ -1268,7 +1268,7 @@ export class TTLock extends TTLockApi implements TTLock {
         try {
           const response = await this.getOperationLogCommand(sequence);
           sequence = response.sequence;
-          for (let log of response.data) {
+          for (const log of response.data) {
             if (log) {
               newOperations.push(log);
               this.operationLog[log.recordNumber] = log;
@@ -1283,11 +1283,11 @@ export class TTLock extends TTLockApi implements TTLock {
 
     // if all operations were requested
     if (all) {
-      let operations = [];
+      const operations = [];
       let maxRecordNumber = 0;
       if (noCache) {
         // if cache will not be used start with only the new operations
-        for (let log of newOperations) {
+        for (const log of newOperations) {
           if (log) {
             operations[log.recordNumber] = log;
             if (log.recordNumber > maxRecordNumber) {
@@ -1297,7 +1297,7 @@ export class TTLock extends TTLockApi implements TTLock {
         }
       } else {
         // otherwise copy current operation log
-        for (let log of this.operationLog) {
+        for (const log of this.operationLog) {
           if (log) {
             operations[log.recordNumber] = log;
             if (log.recordNumber > maxRecordNumber) {
@@ -1317,7 +1317,7 @@ export class TTLock extends TTLockApi implements TTLock {
             const response = await this.getOperationLogCommand(sequence);
             sequence = response.sequence;
             console.log("========= get OperationLog next seq", sequence);
-            for (let log of response.data) {
+            for (const log of response.data) {
               operations[log.recordNumber] = log;
             }
             retry = 0;
@@ -1334,20 +1334,20 @@ export class TTLock extends TTLockApi implements TTLock {
         } while (sequence > 0 && retry < maxRetry);
       } else {
         // if we have operations, check for missing
-        let missing = [];
+        const missing = [];
         for (let i = 0; i < maxRecordNumber; i++) {
           if (typeof operations[i] == "undefined" || operations[i] == null) {
             missing.push(i);
           }
         }
-        for (let sequence of missing) {
+        for (const sequence of missing) {
           let retry = 0;
           let success = false;
           do {
             console.log("========= get OperationLog", sequence);
             try {
               const response = await this.getOperationLogCommand(sequence);
-              for (let log of response.data) {
+              for (const log of response.data) {
                 operations[log.recordNumber] = log;
               }
               retry = 0;
@@ -1459,7 +1459,7 @@ export class TTLock extends TTLockApi implements TTLock {
         rssi: this.rssi,
         autoLockTime: this.autoLockTime ? this.autoLockTime : -1,
         lockedStatus: this.lockedStatus,
-        privateData: privateData,
+        privateData,
         operationLog: this.operationLog
       };
       return data;
@@ -1468,7 +1468,7 @@ export class TTLock extends TTLockApi implements TTLock {
 
   /** Just for debugging */
   toJSON(asObject: boolean = false): string | Object {
-    let json: Object = this.device.toJSON(true);
+    const json: Object = this.device.toJSON(true);
 
     if (this.featureList) Reflect.set(json, 'featureList', this.featureList);
     if (this.switchState) Reflect.set(json, 'switchState', this.switchState);

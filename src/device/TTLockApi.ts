@@ -107,7 +107,7 @@ export abstract class TTLockApi extends EventEmitter {
   }
 
   updateFromTTDevice() {
-    let paramsChanged: LockParamsChanged = {
+    const paramsChanged: LockParamsChanged = {
       batteryCapacity: this.batteryCapacity != this.device.batteryCapacity,
       newEvents: (this.device.hasEvents && this.newEvents != this.device.hasEvents),
       lockedStatus: false
@@ -167,7 +167,7 @@ export abstract class TTLockApi extends EventEmitter {
     const responseEnvelope = await this.device.sendCommand(requestEnvelope);
     if (responseEnvelope) {
       responseEnvelope.setAesKey(defaultAESKey);
-      let cmd = responseEnvelope.getCommand();
+      const cmd = responseEnvelope.getCommand();
       if (cmd.getResponse() != CommandResponse.SUCCESS) {
         throw new Error("Failed getting AES key from lock");
       }
@@ -696,7 +696,7 @@ export abstract class TTLockApi extends EventEmitter {
       if (cmd.getResponse() != CommandResponse.SUCCESS) {
         throw new Error("Failed unlock response");
       }
-      // it is possible here that the UnlockCommand will have a bad CRC 
+      // it is possible here that the UnlockCommand will have a bad CRC
       // and we will read a SearchBicycleStatusCommand that is sent right after instead
       if (typeof cmd.getBatteryCapacity != "undefined") {
         this.batteryCapacity = cmd.getBatteryCapacity();
@@ -731,7 +731,7 @@ export abstract class TTLockApi extends EventEmitter {
       if (cmd.getResponse() != CommandResponse.SUCCESS) {
         throw new Error("Failed unlock response");
       }
-      // it is possible here that the LockCommand will have a bad CRC 
+      // it is possible here that the LockCommand will have a bad CRC
       // and we will read a SearchBicycleStatusCommand  that is sent right after instead
       if (typeof cmd.getBatteryCapacity != "undefined") {
         this.batteryCapacity = cmd.getBatteryCapacity();
@@ -855,7 +855,7 @@ export abstract class TTLockApi extends EventEmitter {
     }
     const requestEnvelope = CommandEnvelope.createFromLockType(this.device.lockType, aesKey);
     requestEnvelope.setCommandType(CommandType.COMM_MANAGE_KEYBOARD_PASSWORD);
-    let cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
+    const cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
     cmd.addPasscode(type, passCode, startDate, endDate);
     const responseEnvelope = await this.device.sendCommand(requestEnvelope);
     if (responseEnvelope) {
@@ -880,7 +880,7 @@ export abstract class TTLockApi extends EventEmitter {
     }
     const requestEnvelope = CommandEnvelope.createFromLockType(this.device.lockType, aesKey);
     requestEnvelope.setCommandType(CommandType.COMM_MANAGE_KEYBOARD_PASSWORD);
-    let cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
+    const cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
     cmd.updatePasscode(type, oldPassCode, newPassCode, startDate, endDate);
     const responseEnvelope = await this.device.sendCommand(requestEnvelope);
     if (responseEnvelope) {
@@ -905,7 +905,7 @@ export abstract class TTLockApi extends EventEmitter {
     }
     const requestEnvelope = CommandEnvelope.createFromLockType(this.device.lockType, aesKey);
     requestEnvelope.setCommandType(CommandType.COMM_MANAGE_KEYBOARD_PASSWORD);
-    let cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
+    const cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
     cmd.deletePasscode(type, passCode);
     const responseEnvelope = await this.device.sendCommand(requestEnvelope);
     if (responseEnvelope) {
@@ -930,7 +930,7 @@ export abstract class TTLockApi extends EventEmitter {
     }
     const requestEnvelope = CommandEnvelope.createFromLockType(this.device.lockType, aesKey);
     requestEnvelope.setCommandType(CommandType.COMM_MANAGE_KEYBOARD_PASSWORD);
-    let cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
+    const cmd = requestEnvelope.getCommand() as ManageKeyboardPasswordCommand;
     cmd.clearAllPasscodes();
     const responseEnvelope = await this.device.sendCommand(requestEnvelope);
     if (responseEnvelope) {

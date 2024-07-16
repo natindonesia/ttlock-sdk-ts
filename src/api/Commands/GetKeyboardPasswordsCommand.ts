@@ -28,26 +28,26 @@ export class GetKeyboardPasswordsCommand extends Command {
         while (index < this.commandData.length) {
           // const len = this.commandData.readUInt8(index++);
           index++;
-          let passCode: KeyboardPassCode = {
+          const passCode: KeyboardPassCode = {
             type: this.commandData.readUInt8(index++),
             newPassCode: "",
             passCode: ""
           };
-  
+
           let codeLen = this.commandData.readUInt8(index++);
           passCode.newPassCode = this.commandData.subarray(index, index + codeLen).toString();
           index += codeLen;
-  
+
           codeLen = this.commandData.readUInt8(index++);
           passCode.passCode = this.commandData.subarray(index, index + codeLen).toString();
           index += codeLen;
-  
+
           passCode.startDate = "20" + this.commandData.readUInt8(index++).toString().padStart(2, '0') // year
             + this.commandData.readUInt8(index++).toString().padStart(2, '0') // month
             + this.commandData.readUInt8(index++).toString().padStart(2, '0') // day
             + this.commandData.readUInt8(index++).toString().padStart(2, '0') // hour
             + this.commandData.readUInt8(index++).toString().padStart(2, '0'); // minutes
-  
+
           switch (passCode.type) {
             case KeyboardPwdType.PWD_TYPE_COUNT:
             case KeyboardPwdType.PWD_TYPE_PERIOD:

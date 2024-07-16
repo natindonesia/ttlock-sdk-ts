@@ -32,7 +32,7 @@ export class ManageICCommand extends Command {
           this.sequence = this.commandData.readInt16BE(2);
           let index = 4;
           while (index < this.commandData.length) {
-            let card: ICCard = {
+            const card: ICCard = {
               cardNumber: "",
               startDate: "",
               endDate: ""
@@ -61,12 +61,12 @@ export class ManageICCommand extends Command {
           }
           break;
         case ICOperate.ADD:
-          let status = this.commandData.readUInt8(2);
+          const status = this.commandData.readUInt8(2);
           this.opType = status;
           switch (status) {
             case ICOperate.STATUS_ADD_SUCCESS:
               // TODO: APICommand.OP_RECOVERY_DATA
-              let len = this.commandData.length - 3;
+              const len = this.commandData.length - 3;
               // remaining length should be 4 or 8, but if the last 4 bytes are 0xff they should be ignored
               if (len == 4 || this.commandData.readUInt32BE(this.commandData.length - 5).toString(16) == 'ffffffff') {
                 this.cardNumber = this.commandData.readUInt32BE(3).toString();
@@ -95,7 +95,7 @@ export class ManageICCommand extends Command {
       switch (this.opType) {
         case ICOperate.IC_SEARCH:
           if (typeof this.sequence != "undefined") {
-            let data = Buffer.alloc(3);
+            const data = Buffer.alloc(3);
             data.writeUInt8(this.opType, 0);
             data.writeUInt16BE(this.sequence, 1);
             return data;

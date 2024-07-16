@@ -53,13 +53,13 @@ export class TTDevice extends EventEmitter {
 
   toJSON(asObject:boolean = false): string | Object {
     const temp = new TTDevice();
-    var json = {};
-    
+    let json = {};
+
     // exclude keys that we don't need from the export
     const excludedKeys = new Set([
       "_eventsCount"
     ]);
-    
+
     Object.getOwnPropertyNames(temp).forEach((key) => {
       if (!excludedKeys.has(key)) {
         const val = Reflect.get(this, key);

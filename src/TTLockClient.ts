@@ -136,7 +136,7 @@ export class TTLockClient extends events.EventEmitter implements TTLockClient {
 
   getLockData(): TTLockData[] {
     const lockData: TTLockData[] = [];
-    for (let [id, lock] of this.lockData) {
+    for (const [id, lock] of this.lockData) {
       lockData.push(lock);
     }
     return lockData;

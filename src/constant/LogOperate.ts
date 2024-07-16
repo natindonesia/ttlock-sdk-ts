@@ -1,7 +1,7 @@
 'use strict';
 
 export enum LogOperate {
-  //Phone unlock
+  // Phone unlock
   /**
    * Bluetooth unlock
    */
@@ -10,22 +10,22 @@ export enum LogOperate {
   // //Server unlock
   // OPERATE_TYPE_SERVER_UNLOCK = 3,
 
-  //Password unlock
+  // Password unlock
   OPERATE_TYPE_KEYBOARD_PASSWORD_UNLOCK = 4,
 
-  //Change the password on the keyboard
+  // Change the password on the keyboard
   OPERATE_TYPE_KEYBOARD_MODIFY_PASSWORD = 5,
 
-  //Delete a single password on the keyboard
+  // Delete a single password on the keyboard
   OPERATE_TYPE_KEYBOARD_REMOVE_SINGLE_PASSWORD = 6,
 
-  //Wrong password unlock
+  // Wrong password unlock
   OPERATE_TYPE_ERROR_PASSWORD_UNLOCK = 7,
 
-  //Delete all passwords on the keyboard
+  // Delete all passwords on the keyboard
   OPERATE_TYPE_KEYBOARD_REMOVE_ALL_PASSWORDS = 8,
 
-  //The password is squeezed out
+  // The password is squeezed out
   OPERATE_TYPE_KEYBOARD_PASSWORD_KICKED = 9,
 
   /**
@@ -185,7 +185,7 @@ export enum LogOperate {
    */
   APP_UNLOCK_FAILED_LOCK_REVERSE = 41,
 
-  //42 ~ 48 no parameters
+  // 42 ~ 48 no parameters
 
   /**
    * Wireless key

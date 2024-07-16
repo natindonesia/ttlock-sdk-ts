@@ -5,7 +5,7 @@ import { Command} from "../Command";
 
 export class ControlLampCommand extends Command {
   static COMMAND_TYPE: CommandType = CommandType.COMM_LAMP;
-  
+
   protected processData(): void {
     throw new Error("Method not implemented.");
   }

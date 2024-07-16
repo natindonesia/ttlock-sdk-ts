@@ -44,7 +44,7 @@ LogOperateNames[LogOperate.PASSCODE_UNLOCK_FAILED_LOCK_REVERSE] = "Password unlo
 LogOperateNames[LogOperate.IC_UNLOCK_FAILED_LOCK_REVERSE] = "The IC card fails to unlock and the door is locked";
 LogOperateNames[LogOperate.FR_UNLOCK_FAILED_LOCK_REVERSE] = "Fingerprint unlocking fails; the door is locked";
 LogOperateNames[LogOperate.APP_UNLOCK_FAILED_LOCK_REVERSE] = "The app fails to unlock and the door is locked";
-//42 ~ 48 no parameters
+// 42 ~ 48 no parameters
 LogOperateNames[LogOperate.WIRELESS_KEY_FOB] = "Wireless key";
 LogOperateNames[LogOperate.WIRELESS_KEY_PAD] = "Wireless keyboard battery";
 

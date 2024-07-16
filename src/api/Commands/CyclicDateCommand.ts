@@ -23,7 +23,7 @@ export class CyclicDateCommand extends Command {
         case CyclicOpType.ADD:
         case CyclicOpType.CLEAR:
           if (typeof this.userType != "undefined" && typeof this.user != "undefined") {
-            let userLen = this.calculateUserLen(this.userType, this.user);
+            const userLen = this.calculateUserLen(this.userType, this.user);
             let data: Buffer;
             if (this.opType == CyclicOpType.ADD) {
               data = Buffer.alloc(3 + userLen + 11); // why so much, we only requre 7 extra bytes

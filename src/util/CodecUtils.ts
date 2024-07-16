@@ -6,7 +6,7 @@ import { dscrc_table } from "./dscrc_table";
 
 export class CodecUtils {
   static encodeWithEncrypt(p0: Buffer, key?: number): Buffer {
-    var seed;
+    let seed;
     if (key) {
       seed = key;
     } else {
@@ -14,10 +14,10 @@ export class CodecUtils {
       seed = Math.round(Math.random() * 126) + 1;
     }
 
-    var encoded = [];
+    let encoded = [];
     const crc = dscrc_table[p0.length & 0xff];
 
-    for (var i = 0; i < p0.length; i++) {
+    for (let i = 0; i < p0.length; i++) {
       encoded.push(seed ^ p0.readInt8(i) ^ crc);
     }
     if (!key) {
@@ -32,17 +32,17 @@ export class CodecUtils {
   }
 
   static decodeWithEncrypt(p0: Buffer, key?: number): Buffer {
-    var seed;
+    let seed;
     if (key) {
       seed = key;
     } else {
       seed = p0.readInt8(p0.length - 1);
     }
 
-    var decoded = [];
+    let decoded = [];
     const crc = dscrc_table[p0.length & 0xff];
 
-    for (var i = 0; i < p0.length - (key ? 0 : 1); i++) {
+    for (let i = 0; i < p0.length - (key ? 0 : 1); i++) {
       decoded.push(seed ^ p0[i] ^ crc);
     }
 
@@ -54,8 +54,8 @@ export class CodecUtils {
   }
 
   static crccompute(p0: Buffer): number {
-    var crc = 0;
-    for (var i = 0; i < p0.length; i++) {
+    let crc = 0;
+    for (let i = 0; i < p0.length; i++) {
       crc = dscrc_table[crc ^ p0.readUInt8(i)];
     }
     return crc;

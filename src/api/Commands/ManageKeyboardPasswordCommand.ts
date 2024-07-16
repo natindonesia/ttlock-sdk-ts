@@ -139,7 +139,7 @@ export class ManageKeyboardPasswordCommand extends Command {
 
   private buildDel(): Buffer {
     if (typeof this.type != "undefined" && typeof this.oldPassCode != "undefined") {
-      let data: Buffer = Buffer.alloc(1 + 1 + 1 + this.oldPassCode.length);
+      const data: Buffer = Buffer.alloc(1 + 1 + 1 + this.oldPassCode.length);
       let index = 0;
       data.writeUInt8(this.opType, index++);
       data.writeUInt8(this.type, index++);
@@ -157,7 +157,7 @@ export class ManageKeyboardPasswordCommand extends Command {
 
   private buildEdit(): Buffer {
     if (typeof this.type != "undefined" && typeof this.oldPassCode != "undefined" && typeof this.passCode != "undefined" && this.startDate && this.endDate) {
-      let data: Buffer = Buffer.alloc(1 + 1 + 1 + this.oldPassCode.length + 1 + this.passCode.length + 5 + 5);
+      const data: Buffer = Buffer.alloc(1 + 1 + 1 + this.oldPassCode.length + 1 + this.passCode.length + 5 + 5);
       let index = 0;
       data.writeUInt8(this.opType, index++);
       data.writeUInt8(this.type, index++);

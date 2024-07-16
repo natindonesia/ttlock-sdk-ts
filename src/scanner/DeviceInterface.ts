@@ -56,7 +56,7 @@ export interface CharacteristicInterface extends EventEmitter {
   subscribe(): Promise<void>;
   toJSON(asObject: boolean): string | Object;
   toString(): string;
-  
+
   on(event: "dataRead", listener: (data: Buffer) => void): this;
 }
 

@@ -7,7 +7,7 @@ import * as commands from "./Commands";
 // TODO: index commands based on COMMAND_TYPE for faster lookup
 
 function getCommandClass(commandType: CommandType): CommandInterface | void {
-  let commandTypeInt = commandType;
+  const commandTypeInt = commandType;
   // if (typeof commandTypeInt == "string") {
   //   commandTypeInt = commandTypeInt.charCodeAt(0);
   // }
@@ -15,7 +15,7 @@ function getCommandClass(commandType: CommandType): CommandInterface | void {
   for (let i = 0; i < classNames.length; i++) {
     if (classNames[i] != "UnknownCommand") {
       const commandClass: CommandInterface = Reflect.get(commands, classNames[i]);
-      let cmdTypeInt = commandClass.COMMAND_TYPE;
+      const cmdTypeInt = commandClass.COMMAND_TYPE;
       // if (typeof cmdTypeInt == 'string') {
       //   cmdTypeInt = cmdTypeInt.charCodeAt(0);
       // }

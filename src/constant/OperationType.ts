@@ -1,8 +1,8 @@
 'use strict';
 
 export enum OperationType {
-  //Inquire
+  // Inquire
   GET_STATE = 1,
-  //modify
+  // modify
   MODIFY = 2,
 }

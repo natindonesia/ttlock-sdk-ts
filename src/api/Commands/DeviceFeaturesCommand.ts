@@ -47,7 +47,7 @@ export class DeviceFeaturesCommand extends Command {
   }
 
   protected processFeatures(features: number): Set<FeatureValue> {
-    let featureList: Set<FeatureValue> = new Set();
+    const featureList: Set<FeatureValue> = new Set();
     const featuresBinary = features.toString(2);
     Object.values(FeatureValue).forEach((feature) => {
       if (typeof feature != "string" && featuresBinary.length > (feature as number)) {

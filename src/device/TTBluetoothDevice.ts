@@ -170,7 +170,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
     }
     const commandData = command.buildCommandBuffer();
     if (commandData) {
-      let data = Buffer.concat([
+      const data = Buffer.concat([
         commandData,
         Buffer.from(CRLF, "hex")
       ]);
@@ -181,7 +181,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
         if (typeof characteristic != "undefined") {
           if (waitForResponse) {
             let retry = 0;
-            let crcs: number[] = [];
+            const crcs: number[] = [];
             let response: CommandEnvelope | undefined;
             this.waitingForResponse = true;
             do {
@@ -336,7 +336,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
       throw new Error("Invalid manufacturer data length:" + manufacturerData.length.toString());
     }
 
-    var offset = 0;
+    let offset = 0;
     this.protocolType = manufacturerData.readInt8(offset++);
     this.protocolVersion = manufacturerData.readInt8(offset++);
     if (this.protocolType == 18 && this.protocolVersion == 25) {
@@ -435,7 +435,7 @@ export class TTBluetoothDevice extends TTDevice implements TTBluetoothDevice {
     // offset += 3 + 4; // Offset in original SDK is + 3, but in scans it's actually +4
     offset = manufacturerData.length - 6; // let's just get the last 6 bytes
     const macBuf = manufacturerData.slice(offset, offset + 6);
-    var macArr: string[] = [];
+    const macArr: string[] = [];
     macBuf.forEach((m: number) => {
       let hexByte: string = m.toString(16);
       if (hexByte.length < 2) {

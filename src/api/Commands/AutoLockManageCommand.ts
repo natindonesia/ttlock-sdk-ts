@@ -10,7 +10,7 @@ export class AutoLockManageCommand extends Command {
   private opType: AutoLockOperate.SEARCH | AutoLockOperate.MODIFY = AutoLockOperate.SEARCH;
   private opValue?: number;
   private batteryCapacity?: number;
-  
+
   protected processData(): void {
     if (this.commandData && this.commandData.length >= 4) {
       // 0 - battery

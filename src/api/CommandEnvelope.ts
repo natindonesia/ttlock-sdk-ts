@@ -28,7 +28,7 @@ export class CommandEnvelope {
 
   /**
    * Create a command from raw data usually received from characteristic change
-   * @param rawData 
+   * @param rawData
    */
   static createFromRawData(rawData: Buffer, aesKey?: Buffer): CommandEnvelope {
     const command = new CommandEnvelope();
@@ -37,7 +37,7 @@ export class CommandEnvelope {
     }
     command.header = rawData.subarray(0, 2);
     command.protocol_type = rawData.readInt8(2);
-    if (command.protocol_type >= 5 || command.protocol_type == 0) { //New agreement 
+    if (command.protocol_type >= 5 || command.protocol_type == 0) { // New agreement
       if (rawData.length < 13) {
         throw new Error("New agreement data too short");
       }
@@ -48,7 +48,7 @@ export class CommandEnvelope {
       command.commandType = rawData.readUInt8(9);
       command.encrypt = rawData.readInt8(10);
       const length = rawData.readInt8(11);
-      if (length < 0 || rawData.length < 12 + length + 1) { // header + data + crc 
+      if (length < 0 || rawData.length < 12 + length + 1) { // header + data + crc
         throw new Error("Invalid data length");
       }
       if (length > 0) {
@@ -84,7 +84,7 @@ export class CommandEnvelope {
 
   /**
    * Create new command starting from the version of the device
-   * @param lockVersion 
+   * @param lockVersion
    */
   static createFromLockVersion(lockVersion: LockVersion, aesKey?: Buffer): CommandEnvelope {
     const command = new CommandEnvelope;
@@ -247,11 +247,11 @@ export class CommandEnvelope {
 
   /**
    * Generate the command from the commandType and data
-   * 
+   *
    * Command should be built when
    * - creating the envelope from data (received command/response) but only after having the aesKey
    * - creating a new envelope and we have the commandType and aesKey
-   * 
+   *
    */
   private generateCommand() {
     if (this.commandType != CommandType.COMM_UNSET && typeof this.command == "undefined") {

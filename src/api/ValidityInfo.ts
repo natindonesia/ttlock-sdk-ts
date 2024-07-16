@@ -49,7 +49,7 @@ export class ValidityInfo {
   }
 
   setStartDate(startDate: string): boolean {
-    let date = moment(startDate, "YYYYMMDDHHmm");
+    const date = moment(startDate, "YYYYMMDDHHmm");
     if (date.isValid()) {
       this.startDate = date;
       return true;
@@ -58,7 +58,7 @@ export class ValidityInfo {
   }
 
   setEndDate(endDate: string): boolean {
-    let date = moment(endDate, "YYYYMMDDHHmm");
+    const date = moment(endDate, "YYYYMMDDHHmm");
     if (date.isValid()) {
       this.endDate = date;
       return true;

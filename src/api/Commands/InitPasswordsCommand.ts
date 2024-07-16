@@ -19,11 +19,11 @@ export class InitPasswordsCommand extends Command {
   }
 
   build(): Buffer {
-    let year = this.calculateYear();
+    const year = this.calculateYear();
     this.pwdInfo = this.generateCodeSecret(year);
 
     // first data byte is the year
-    let buffers: Buffer[] = [
+    const buffers: Buffer[] = [
       Buffer.from([year % 100]), // last 2 digits of the year
     ];
     for (let i = 0; i < 10; i++) {
@@ -40,7 +40,7 @@ export class InitPasswordsCommand extends Command {
   }
 
   private generateCodeSecret(year: number): CodeSecret[] {
-    let generated: CodeSecret[] = [];
+    const generated: CodeSecret[] = [];
     for (let i = 0; i < 10; i++, year++) {
       let secret: string = "";
       for (let j = 0; j < 10; j++) {
@@ -49,7 +49,7 @@ export class InitPasswordsCommand extends Command {
       generated.push({
         year: year % 100,
         code: Math.floor(Math.random() * 1071),
-        secret: secret
+        secret
       });
     }
     return generated;

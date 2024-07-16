@@ -32,7 +32,7 @@ export class ManageFRCommand extends Command {
           this.sequence = this.commandData.readInt16BE(2);
           let index = 4;
           while (index < this.commandData.length) {
-            let fingerprint: Fingerprint = {
+            const fingerprint: Fingerprint = {
               fpNumber: "",
               startDate: "",
               endDate: ""
@@ -59,7 +59,7 @@ export class ManageFRCommand extends Command {
           }
           break;
         case ICOperate.ADD:
-          let status = this.commandData.readUInt8(2);
+          const status = this.commandData.readUInt8(2);
           this.opType = status;
           switch (status) {
             case ICOperate.STATUS_ADD_SUCCESS:
@@ -125,7 +125,7 @@ export class ManageFRCommand extends Command {
           if (this.fpNumber) {
             const data = Buffer.alloc(7);
             data.writeUInt8(this.opType, 0);
-            
+
             const fp: Buffer = Buffer.alloc(8);
             fp.writeBigInt64BE(BigInt(this.fpNumber));
             fp.copy(data, 1, 2);

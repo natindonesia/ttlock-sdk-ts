@@ -35,7 +35,7 @@ export class OperationLogCommand extends Command {
         while (index < this.commandData.length) {
           const recLen = this.commandData.readUInt8(index++);
           const recStart = index;
-          let log: LogEntry = {
+          const log: LogEntry = {
             recordNumber: this.sequence - 1,
             recordType: this.commandData.readUInt8(index++),
             operateDate: "20" + this.commandData.readUInt8(index++).toString().padStart(2, '0') // year
@@ -170,7 +170,7 @@ export class OperationLogCommand extends Command {
     if (typeof this.sequence == "undefined") {
       this.sequence = 0xffff;
     }
-    let data = Buffer.alloc(2);
+    const data = Buffer.alloc(2);
     data.writeUInt16BE(this.sequence);
     return data;
   }

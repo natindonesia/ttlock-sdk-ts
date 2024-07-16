@@ -48,7 +48,7 @@ export class AddAdminCommand extends Command {
 
   build(): Buffer {
     if (this.adminPs && this.unlockKey) {
-      const adminUnlock = Buffer.alloc(8);//new ArrayBuffer(8);
+      const adminUnlock = Buffer.alloc(8);// new ArrayBuffer(8);
       adminUnlock.writeInt32BE(this.adminPs, 0);
       adminUnlock.writeInt32BE(this.unlockKey, 4);
       return Buffer.concat([

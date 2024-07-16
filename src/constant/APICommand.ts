@@ -2,33 +2,33 @@
 
 export enum APICommand {
   OP_GET_LOCK_VERSION = 1,
-  OP_ADD_ADMIN = 2, //Add administrator
-  OP_UNLOCK_ADMIN = 3, //The administrator opens the door
-  OP_UNLOCK_EKEY = 4, //Guantong users open the door
-  OP_SET_KEYBOARD_PASSWORD = 5, //Set the administrator keyboard password
+  OP_ADD_ADMIN = 2, // Add administrator
+  OP_UNLOCK_ADMIN = 3, // The administrator opens the door
+  OP_UNLOCK_EKEY = 4, // Guantong users open the door
+  OP_SET_KEYBOARD_PASSWORD = 5, // Set the administrator keyboard password
   OP_CALIBRATE_TIME = 6,
-  OP_SET_NORMAL_USER_PASSWORD = 7, //Set delete password
+  OP_SET_NORMAL_USER_PASSWORD = 7, // Set delete password
   OP_READ_NORMAL_USER_PASSWORD = 8,
   OP_CLEAR_NORMAL_USER_PASSWORD = 9,
   OP_REMOVE_SINGLE_NORMAL_USER_PASSWORD = 10,
-  OP_RESET_KEYBOARD_PASSWORD = 11, //Reset keyboard password
+  OP_RESET_KEYBOARD_PASSWORD = 11, // Reset keyboard password
   OP_SET_DELETE_PASSWORD = 12,
-  OP_LOCK_ADMIN = 13, //Parking lock admin closes the lock
-  OP_LOCK_EKEY = 14, //Parking lock EKEY close lock
-  OP_RESET_EKEY = 15, //set lockFlag
+  OP_LOCK_ADMIN = 13, // Parking lock admin closes the lock
+  OP_LOCK_EKEY = 14, // Parking lock EKEY close lock
+  OP_RESET_EKEY = 15, // set lockFlag
 
   /**
    * Initialization password
    */
   OP_INIT_PWD = 16,
 
-  //Set the lock name
+  // Set the lock name
   OP_SET_LOCK_NAME = 17,
 
-  //Read door lock time
+  // Read door lock time
   OP_GET_LOCK_TIME = 18,
 
-  //reset
+  // reset
   OP_RESET_LOCK = 19,
 
   /**
@@ -211,9 +211,9 @@ export enum APICommand {
    */
   OP_CONFIGURE_NB_SERVER_ADDRESS = 56,
 
-  OP_GET_ADMIN_KEYBOARD_PASSWORD = 57, //Read the administrator keyboard password
+  OP_GET_ADMIN_KEYBOARD_PASSWORD = 57, // Read the administrator keyboard password
 
-  OP_WRITE_FR = 58, //Write fingerprint data
+  OP_WRITE_FR = 58, // Write fingerprint data
 
   OP_QUERY_PASSAGE_MODE = 59,
   OP_ADD_OR_MODIFY_PASSAGE_MODE = 60,

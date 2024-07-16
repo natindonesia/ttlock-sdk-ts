@@ -17,7 +17,7 @@ export class AESUtil {
     if (source.length == 0) {
       return Buffer.from([]);
     }
-    
+
     if (typeof key == "undefined") {
       key = defaultAESKey;
     }

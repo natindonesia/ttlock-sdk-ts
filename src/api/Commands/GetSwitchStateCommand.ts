@@ -13,5 +13,5 @@ export class GetSwitchStateCommand extends Command {
   build(): Buffer {
     throw new Error("Method not implemented.");
   }
-  
+
 }
